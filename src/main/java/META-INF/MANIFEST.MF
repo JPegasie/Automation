@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Class-Path: log4j-api-2.11.0.jar selenium-api-3.12.0.jar commons-codec
+ -1.10.jar j2objc-annotations-1.1.jar xmlbeans-2.6.0.jar error_prone_a
+ nnotations-2.1.3.jar httpclient-4.5.3.jar commons-exec-1.3.jar seleni
+ um-chrome-driver-3.12.0.jar selenium-remote-driver-3.12.0.jar animal-
+ sniffer-annotations-1.14.jar byte-buddy-1.8.3.jar poi-3.17.jar gson-2
+ .8.2.jar jsr305-1.3.9.jar selenium-ie-driver-3.12.0.jar selenium-fire
+ fox-driver-3.12.0.jar okio-1.13.0.jar curvesapi-1.04.jar selenium-saf
+ ari-driver-3.12.0.jar selenium-java-3.12.0.jar poi-ooxml-3.17.jar okh
+ ttp-3.9.1.jar httpcore-4.4.6.jar commons-logging-1.2.jar checker-comp
+ at-qual-2.0.0.jar selenium-edge-driver-3.12.0.jar commons-collections
+ 4-4.1.jar poi-ooxml-schemas-3.17.jar guava-23.6-jre.jar log4j-core-2.
+ 11.0.jar selenium-support-3.12.0.jar selenium-opera-driver-3.12.0.jar
+  stax-api-1.0.1.jar
+Main-Class: com.pegasie.base.TestEngine
+
