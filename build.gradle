@@ -1,9 +1,43 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        //  Apache POI
+        classpath group: 'org.apache.poi', name: 'poi', version: '3.17'
+        classpath group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+
+        // Selenium
+        classpath group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.12.0'
+
+        // log4j2
+        classpath group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+        classpath group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+
+        // Apache Commons IO Library
+        classpath group: 'commons-io', name: 'commons-io', version: '2.6'
+
+        // Apache PDFBox Library
+        classpath group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.11'
+
+        // Apache Docx4J Library
+        classpath group: 'org.docx4j', name: 'docx4j', version: '3.3.7'
+
+    }
 }
 
-group 'PegasieAutomation'
-version '1.0-SNAPSHOT'
+plugins {
+    id 'java'
+    //id 'java-library'
+    id 'application'
+}
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
+
+group 'com.pegasie'
+version '1.0'
 
 sourceCompatibility = 1.8
 
@@ -12,5 +46,34 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    //  Apache POI
+    compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+
+    // Selenium
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.12.0'
+
+    // log4j2
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+
+    // Apache Commons IO Library
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+
+    // Apache PDFBox Library
+    compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.11'
+
+    // Apache Docx4J Library
+    compile group: 'org.docx4j', name: 'docx4j', version: '3.3.7'
 }
+
+mainClassName = 'com.pegasie.base.TestEngine'
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.cspcgi.base.TestEngine',
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '))
+    }
+}
+
