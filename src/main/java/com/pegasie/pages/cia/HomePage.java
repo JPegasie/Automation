@@ -37,6 +37,11 @@ public class HomePage extends TemplatePage {
         finally {
             return result;
         }
+    }
 
+    public boolean verifyLogoutLink() {
+        boolean result = false;
+       //waitPageReady();
+        return lnkLogout.getText().equalsIgnoreCase("logout");
     }
 }
