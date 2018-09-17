@@ -22,6 +22,9 @@ public class CIALoginPage extends TemplatePage {
     @FindBy(how = How.ID, using = "inputPassword")
     WebElement txtPassword;
 
+    @FindBy(how = How.ID, using="globalMessage")
+    WebElement lblGlobalMesssage;
+
         //WebElement lblPageTitle;
 
 //    public boolean verifyContentTitle (String title) {
@@ -31,23 +34,32 @@ public class CIALoginPage extends TemplatePage {
 //    }
 
     public void enterALMSite(String url) {
+        txtSite.clear();
         txtSite.sendKeys(url);
     }
 
     public void enterDomain(String domain) {
+        txtDomain.clear();
         txtDomain.sendKeys(domain);
     }
 
     public void enterProject(String project) {
+        txtProject.clear();
         txtProject.sendKeys(project);
     }
 
     public void enterUserName(String username) {
+        txtUserName.clear();
         txtUserName.sendKeys(username);
     }
 
     public void enterPassword(String password) {
+        txtPassword.clear();
         txtPassword.sendKeys(password);
+    }
+
+    public boolean verifyGlobalMessage(String msg) {
+        return msg.equalsIgnoreCase(lblGlobalMesssage.getText());
     }
 
 
