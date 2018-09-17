@@ -28,6 +28,8 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -44,6 +46,10 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
+
+    @FindBy(how = How.XPATH, using = "//body")
+    WebElement containerHeader;
+
     private static Logger logger = LogManager.getLogger();
     public static WebDriver driver;
     private boolean isRemoteTest = Boolean.parseBoolean(System.getProperty("IsRemoteTest"));
@@ -53,6 +59,14 @@ public class TestBase {
     private String seleniumGridUrl = System.getProperty("SeleniumGridUrl");
     private String DownLoadFolder = System.getProperty("DownloadFolder");
     private File downloadFolder = new File(DownLoadFolder);
+
+    public boolean waitPageReady() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        System.out.println("<body class=" + containerHeader.getAttribute("class"));
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(containerHeader,"class", "loading")));
+        System.out.println("<body class=" + containerHeader.getAttribute("class"));
+        return containerHeader.getAttribute("class").equals("");
+    }
 
     public void saisirType(String browserType) {
         if (driver != null) {
@@ -206,6 +220,7 @@ public class TestBase {
     }
 
     public void cliquerLien(String linkText) throws InterruptedException {
+        waitPageReady();
         linkText = linkText.trim();
         WebElement targetElement = null;
         boolean isElementFound = false;
