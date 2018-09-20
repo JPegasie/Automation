@@ -169,13 +169,13 @@ public class TestBase {
                 if (isRemoteTest) {
                     // Remote Test Config
                     try {
-                        ieOptions.setCapability(CapabilityType.BROWSER_NAME, BrowserType.IE);
-                        ieOptions.setCapability(CapabilityType.VERSION, version);
-                        Proxy p = new Proxy();
-                        p.setProxyType(Proxy.ProxyType.DIRECT);
-                        ieOptions.setProxy(p);
-                        ieOptions.usePerProcessProxy();
-                        driver = new RemoteWebDriver(new URL(seleniumGridUrl), ieOptions);
+                          ieOptions.setCapability(CapabilityType.BROWSER_NAME, BrowserType.IE);
+                          ieOptions.setCapability(CapabilityType.VERSION, version);
+//                        Proxy p = new Proxy();
+//                        p.setProxyType(Proxy.ProxyType.DIRECT);
+//                        ieOptions.setProxy(p);
+//                        ieOptions.usePerProcessProxy();
+                          driver = new RemoteWebDriver(new URL(seleniumGridUrl), ieOptions);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
@@ -214,8 +214,8 @@ public class TestBase {
     }
 
     public void close() {
-//        driver.close();
-        //driver.quit();
+        driver.close();
+        driver.quit();
         driver = null;
     }
 
