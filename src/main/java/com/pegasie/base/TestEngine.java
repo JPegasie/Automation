@@ -210,8 +210,8 @@ public class TestEngine {
 //				}
 			}
 		} finally {
-//			if (TestBase.driver != null)
-//				TestBase.driver.quit();
+			if (TestBase.driver != null)
+				TestBase.driver.quit();
 		}
 		if (isAnyCaseFailed) {
 			logger.warn("There is failed case, please check the log file and test result files for more details.");
