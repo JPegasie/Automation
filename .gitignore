@@ -26,8 +26,9 @@ hs_err_pid*
 
 # idea settings
 .idea
-gradle/wrapper
-gradlew
-gradlew.bat
-settings.gradle
 *.iml
+#gradle/wrapper
+#gradlew
+#gradlew.bat
+#settings.gradle
+
