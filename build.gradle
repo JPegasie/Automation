@@ -72,7 +72,7 @@ mainClassName = 'com.pegasie.base.TestEngine'
 jar {
     manifest {
         attributes(
-                'Main-Class': 'com.cspcgi.base.TestEngine',
+                'Main-Class': 'com.pegasie.base.TestEngine',
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '))
     }
 }
