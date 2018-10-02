@@ -17,6 +17,8 @@ public class HomePage extends TemplatePage {
         WebElement lblPageTitle;
     @FindBy(how = How.XPATH, using = "//a[@href='/ws/user/logout']")
     WebElement lnkLogout;
+    @FindBy(how = How.XPATH, using = "//span[@data-bind='text : affectedRequirements']")
+        WebElement lblAffectedFeaturesCnt;
 
     public boolean verifyContentTitle (String title) {
         System.out.println(lblPageTitle.getTagName());
@@ -37,6 +39,24 @@ public class HomePage extends TemplatePage {
         finally {
             return result;
         }
+    }
+
+    public boolean verifyAffectedFeaturesCnt(String lblCount) {
+        boolean result = false;
+        try {
+            waitPageReady();
+            if (lblAffectedFeaturesCnt.getText().contains(lblCount)) {
+                result = true;
+            }
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+        }
+        finally {
+            return result;
+        }
+
+
     }
 
     public boolean verifyLogoutLink() {
