@@ -19,6 +19,8 @@ public class HomePage extends TemplatePage {
     WebElement lnkLogout;
     @FindBy(how = How.XPATH, using = "//span[@data-bind='text : affectedRequirements']")
         WebElement lblAffectedFeaturesCnt;
+    @FindBy(how = How.XPATH, using = "//div[@id='chart_placeholder']")
+        WebElement lblWheel;
 
     public boolean verifyContentTitle (String title) {
         System.out.println(lblPageTitle.getTagName());
@@ -55,8 +57,29 @@ public class HomePage extends TemplatePage {
         finally {
             return result;
         }
+    }
 
-
+    public boolean verifyRequirement(String requirem) {
+        boolean result = false;
+        try {
+            waitPageReady();
+            System.out.println(lblWheel.getAttribute("id") + " ATTRIBUTE");
+            System.out.println(lblWheel.findElements(By.tagName("text")).size() + " SIZE of text");
+            List<WebElement> reqs = lblWheel.findElements(By.tagName("text"));
+            for (WebElement req : reqs) {
+                //System.out.println(req.getText());
+                if (req.getText().contains(requirem)) {
+                    result = true;
+                    break;
+                }
+             }
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+        }
+        finally {
+            return result;
+        }
     }
 
     public boolean verifyLogoutLink() {
