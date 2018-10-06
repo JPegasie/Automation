@@ -81,6 +81,24 @@ public class ResultsGridPage extends TemplatePage {
         return result;
     }
 
+    public boolean verifyOptScopeLinkedTestsAdditional(String value) {
+        boolean result = false;
+        System.out.println(summaryOptimizedTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryOptimizedTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
+        result = Cols.get(2).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifyOptScopeLinkedTestsTotal(String value) {
+        boolean result = false;
+        System.out.println(summaryOptimizedTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryOptimizedTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
+        result = Cols.get(3).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
     public boolean verifyIntScopeTextExecTargeted(String value) {
         boolean result = false;
         System.out.println(summaryInitialScopeTable.getAttribute("class"));
