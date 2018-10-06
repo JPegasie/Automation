@@ -53,8 +53,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean selectRelease(String value) {
         boolean result = false;
-        DropDownListUtil.selectByVisibleText(drpDwnRelease, value);
-        return true;
+        result = DropDownListUtil.selectByVisibleText(drpDwnRelease, value);
+        return result;
     }
 
     public boolean verifyOptScopeTextExecTargeted(String value) {
