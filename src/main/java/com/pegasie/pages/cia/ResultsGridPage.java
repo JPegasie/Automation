@@ -108,6 +108,51 @@ public class ResultsGridPage extends TemplatePage {
         return result;
     }
 
+    public boolean verifyIntScopeTextExecAdditional(String value) {
+        boolean result = false;
+        System.out.println(summaryInitialScopeTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
+        result = Cols.get(2).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifyIntScopeTextExecTotal(String value) {
+        boolean result = false;
+        System.out.println(summaryInitialScopeTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
+        result = Cols.get(3).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifyIntScopeLinkedTestsTargeted(String value) {
+        boolean result = false;
+        System.out.println(summaryInitialScopeTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
+        result = Cols.get(1).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifyIntScopeLinkedTestsAdditional(String value) {
+        boolean result = false;
+        System.out.println(summaryInitialScopeTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
+        result = Cols.get(2).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifyIntScopeLinkedTestsTotal(String value) {
+        boolean result = false;
+        System.out.println(summaryInitialScopeTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
+        result = Cols.get(3).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
     public boolean verifyLogoutLink() {
         boolean result = false;
        //waitPageReady();
