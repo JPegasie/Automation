@@ -3,6 +3,7 @@ package com.pegasie.pages.cia;
 import com.pegasie.pages.TemplatePage;
 import com.pegasie.util.DropDownListUtil;
 import com.pegasie.util.HTMLTableUtil;
+import com.pegasie.util.RadioButtonUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -22,13 +23,15 @@ public class ResultsGridPage extends TemplatePage {
 
     @FindBy(how = How.CLASS_NAME, using = "styled-select")
         WebElement drpDwnRelease;
+    @FindBy(how = How.XPATH, using = "//input[@type='radio'][@name='view']")
+        List<WebElement> rdoBtnView;
 
     @FindBy(how = How.XPATH, using = "//div[@title='Summary']//table[@class='table table-hover optimizedScope']")
         WebElement tblSummaryOptimized;
     @FindBy(how = How.XPATH, using = "//div[@title='Initial Scope']//table[@class='table table-hover']")
         WebElement tblSummaryInitialScope;
     @FindBy(how = How.XPATH, using = "//div[@title='Savings']//table[@class='table table-hover']")
-    WebElement tblSummarySavings;
+        WebElement tblSummarySavings;
 
     public boolean verifyContentTitle (String title) {
         System.out.println(lblPageTitle.getTagName());
@@ -53,8 +56,31 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean selectRelease(String value) {
         boolean result = false;
-        result = DropDownListUtil.selectByVisibleText(drpDwnRelease, value);
-        return result;
+        try {
+            waitPageReady();
+            result = DropDownListUtil.selectByVisibleText(drpDwnRelease, value);
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+        }
+        finally {
+            return result;
+        }
+    }
+
+    public boolean selectView(String value) {
+        boolean result = false;
+        try {
+            waitPageReady();
+            System.out.println("Size of View: " + rdoBtnView.size());
+            result = RadioButtonUtil.selectByValue(rdoBtnView, value);
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+        }
+        finally {
+            return result;
+        }
     }
 
     public boolean verifyOptScopeTextExecTargeted(String value) {
