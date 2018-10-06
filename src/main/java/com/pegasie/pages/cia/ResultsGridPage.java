@@ -20,9 +20,11 @@ public class ResultsGridPage extends TemplatePage {
         WebElement lnkLogout;
 
     @FindBy(how = How.XPATH, using = "//div[@title='Summary']//table[@class='table table-hover optimizedScope']")
-        WebElement summaryOptimizedTable;
-    @FindBy(how = How.XPATH, using = "//div[@title='Summary']//table[@class='table table-hover optimizedScope']")
-        WebElement summaryInitialScopeTable;
+        WebElement tblSummaryOptimized;
+    @FindBy(how = How.XPATH, using = "//div[@title='Initial Scope']//table[@class='table table-hover']")
+        WebElement tblSummaryInitialScope;
+    @FindBy(how = How.XPATH, using = "//div[@title='Savings']//table[@class='table table-hover']")
+    WebElement summarySavingsTable;
 
     public boolean verifyContentTitle (String title) {
         System.out.println(lblPageTitle.getTagName());
@@ -47,8 +49,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyOptScopeTextExecTargeted(String value) {
         boolean result = false;
-        System.out.println(summaryOptimizedTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryOptimizedTable);
+        System.out.println(tblSummaryOptimized.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryOptimized);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
         result = Cols.get(1).getText().equalsIgnoreCase(value);
         return result;
@@ -56,8 +58,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyOptScopeTextExecAdditional(String value) {
         boolean result = false;
-        System.out.println(summaryOptimizedTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryOptimizedTable);
+        System.out.println(tblSummaryOptimized.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryOptimized);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
         result = Cols.get(2).getText().equalsIgnoreCase(value);
         return result;
@@ -65,8 +67,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyOptScopeTextExecTotal(String value) {
         boolean result = false;
-        System.out.println(summaryOptimizedTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryOptimizedTable);
+        System.out.println(tblSummaryOptimized.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryOptimized);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
         result = Cols.get(3).getText().equalsIgnoreCase(value);
         return result;
@@ -74,8 +76,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyOptScopeLinkedTestsTargeted(String value) {
         boolean result = false;
-        System.out.println(summaryOptimizedTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryOptimizedTable);
+        System.out.println(tblSummaryOptimized.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryOptimized);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
         result = Cols.get(1).getText().equalsIgnoreCase(value);
         return result;
@@ -83,8 +85,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyOptScopeLinkedTestsAdditional(String value) {
         boolean result = false;
-        System.out.println(summaryOptimizedTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryOptimizedTable);
+        System.out.println(tblSummaryOptimized.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryOptimized);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
         result = Cols.get(2).getText().equalsIgnoreCase(value);
         return result;
@@ -92,8 +94,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyOptScopeLinkedTestsTotal(String value) {
         boolean result = false;
-        System.out.println(summaryOptimizedTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryOptimizedTable);
+        System.out.println(tblSummaryOptimized.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryOptimized);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
         result = Cols.get(3).getText().equalsIgnoreCase(value);
         return result;
@@ -101,8 +103,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyIntScopeTextExecTargeted(String value) {
         boolean result = false;
-        System.out.println(summaryInitialScopeTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        System.out.println(tblSummaryInitialScope.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryInitialScope);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
         result = Cols.get(1).getText().equalsIgnoreCase(value);
         return result;
@@ -110,8 +112,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyIntScopeTextExecAdditional(String value) {
         boolean result = false;
-        System.out.println(summaryInitialScopeTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        System.out.println(tblSummaryInitialScope.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryInitialScope);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
         result = Cols.get(2).getText().equalsIgnoreCase(value);
         return result;
@@ -119,8 +121,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyIntScopeTextExecTotal(String value) {
         boolean result = false;
-        System.out.println(summaryInitialScopeTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        System.out.println(tblSummaryInitialScope.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryInitialScope);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
         result = Cols.get(3).getText().equalsIgnoreCase(value);
         return result;
@@ -128,8 +130,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyIntScopeLinkedTestsTargeted(String value) {
         boolean result = false;
-        System.out.println(summaryInitialScopeTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        System.out.println(tblSummaryInitialScope.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryInitialScope);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
         result = Cols.get(1).getText().equalsIgnoreCase(value);
         return result;
@@ -137,8 +139,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyIntScopeLinkedTestsAdditional(String value) {
         boolean result = false;
-        System.out.println(summaryInitialScopeTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        System.out.println(tblSummaryInitialScope.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryInitialScope);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
         result = Cols.get(2).getText().equalsIgnoreCase(value);
         return result;
@@ -146,8 +148,8 @@ public class ResultsGridPage extends TemplatePage {
 
     public boolean verifyIntScopeLinkedTestsTotal(String value) {
         boolean result = false;
-        System.out.println(summaryInitialScopeTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryInitialScopeTable);
+        System.out.println(tblSummaryInitialScope.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryInitialScope);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
         result = Cols.get(3).getText().equalsIgnoreCase(value);
         return result;
