@@ -24,7 +24,7 @@ public class ResultsGridPage extends TemplatePage {
     @FindBy(how = How.XPATH, using = "//div[@title='Initial Scope']//table[@class='table table-hover']")
         WebElement tblSummaryInitialScope;
     @FindBy(how = How.XPATH, using = "//div[@title='Savings']//table[@class='table table-hover']")
-    WebElement summarySavingsTable;
+    WebElement tblSummarySavings;
 
     public boolean verifyContentTitle (String title) {
         System.out.println(lblPageTitle.getTagName());
@@ -151,6 +151,33 @@ public class ResultsGridPage extends TemplatePage {
         System.out.println(tblSummaryInitialScope.getAttribute("class"));
         List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummaryInitialScope);
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,3);
+        result = Cols.get(3).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifySavingsTestExecFullRegression(String value) {
+        boolean result = false;
+        System.out.println(tblSummarySavings.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummarySavings);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
+        result = Cols.get(1).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifySavingsTestExecInitialScope(String value) {
+        boolean result = false;
+        System.out.println(tblSummarySavings.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummarySavings);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
+        result = Cols.get(2).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifySavingsTestExecOptimizedScope(String value) {
+        boolean result = false;
+        System.out.println(tblSummarySavings.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(tblSummarySavings);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
         result = Cols.get(3).getText().equalsIgnoreCase(value);
         return result;
     }
