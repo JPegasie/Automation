@@ -12,11 +12,27 @@ import java.util.List;
 
 public class ChartPage extends TemplatePage {
 
+
+    @FindBy(how = How.XPATH, using = "//span[@data-bind='text : affectedRequirements']")
+        WebElement lblAffectedFeaturesCnt;
     @FindBy(how = How.XPATH, using = "//div[@id='chart_placeholder']")
         WebElement lblWheel;
-    @FindBy(how = How.XPATH, using = "//div[@title='Summary']//table[@class='table table-hover optimizedScope']")
-        WebElement summaryTable;
 
+    public boolean verifyAffectedFeaturesCnt(String lblCount) {
+        boolean result = false;
+        try {
+            waitPageReady();
+            if (lblAffectedFeaturesCnt.getText().contains(lblCount)) {
+                result = true;
+            }
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+        }
+        finally {
+            return result;
+        }
+    }
     public boolean verifyRequirement(String requirem) {
         boolean result = false;
         try {
@@ -40,30 +56,5 @@ public class ChartPage extends TemplatePage {
         }
     }
 
-    public boolean verifyOptScopeTextExecTargeted(String value) {
-        boolean result = false;
-        System.out.println(summaryTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryTable);
-        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
-        result = Cols.get(1).getText().equalsIgnoreCase(value);
-        return result;
-    }
 
-    public boolean verifyOptScopeTextExecAdditional(String value) {
-        boolean result = false;
-        System.out.println(summaryTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryTable);
-        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
-        result = Cols.get(2).getText().equalsIgnoreCase(value);
-        return result;
-    }
-
-    public boolean verifyOptScopeTextExecTotal(String value) {
-        boolean result = false;
-        System.out.println(summaryTable.getAttribute("class"));
-        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryTable);
-        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
-        result = Cols.get(3).getText().equalsIgnoreCase(value);
-        return result;
-    }
 }
