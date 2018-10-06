@@ -1,6 +1,7 @@
 package com.pegasie.pages.cia;
 
 import com.pegasie.pages.TemplatePage;
+import com.pegasie.util.DropDownListUtil;
 import com.pegasie.util.HTMLTableUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -18,6 +19,9 @@ public class ResultsGridPage extends TemplatePage {
         WebElement lblPageTitle;
     @FindBy(how = How.XPATH, using = "//a[@href='/ws/user/logout']")
         WebElement lnkLogout;
+
+    @FindBy(how = How.CLASS_NAME, using = "styled-select")
+        WebElement drpDwnRelease;
 
     @FindBy(how = How.XPATH, using = "//div[@title='Summary']//table[@class='table table-hover optimizedScope']")
         WebElement tblSummaryOptimized;
@@ -45,6 +49,12 @@ public class ResultsGridPage extends TemplatePage {
         finally {
             return result;
         }
+    }
+
+    public boolean selectRelease(String value) {
+        boolean result = false;
+        DropDownListUtil.selectByVisibleText(drpDwnRelease, value);
+        return true;
     }
 
     public boolean verifyOptScopeTextExecTargeted(String value) {
