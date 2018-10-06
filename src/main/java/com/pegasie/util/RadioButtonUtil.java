@@ -12,7 +12,6 @@ public class RadioButtonUtil {
         boolean result = false;
         if (text.length() != 0) {
             for (WebElement toggle : toggleButtons) {
-                System.out.println(toggle.getAttribute("value") + " the actual view value");
                 if (toggle.getAttribute("value").equalsIgnoreCase(text)) {
                     WebElement e = toggle.findElement(By.xpath("following-sibling::label"));
                     e.click();
