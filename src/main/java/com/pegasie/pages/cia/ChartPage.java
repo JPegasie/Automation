@@ -7,60 +7,15 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class HomePage extends TemplatePage {
+public class ChartPage extends TemplatePage {
 
-    @FindBy(how = How.XPATH, using = "//h1[@class='heading']")
-        WebElement lblPageTitle;
-    @FindBy(how = How.XPATH, using = "//a[@href='/ws/user/logout']")
-    WebElement lnkLogout;
-    @FindBy(how = How.XPATH, using = "//span[@data-bind='text : affectedRequirements']")
-        WebElement lblAffectedFeaturesCnt;
     @FindBy(how = How.XPATH, using = "//div[@id='chart_placeholder']")
         WebElement lblWheel;
     @FindBy(how = How.XPATH, using = "//div[@title='Summary']//table[@class='table table-hover optimizedScope']")
         WebElement summaryTable;
-
-    public boolean verifyContentTitle (String title) {
-        System.out.println(lblPageTitle.getTagName());
-        //return lblPageTitle.getText().equalsIgnoreCase(title);
-        return true;
-    }
-
-    public boolean clickLogout() {
-        boolean result = false;
-        try {
-            waitPageReady();
-            lnkLogout.click();
-            result = true;
-        }
-        catch (NoSuchElementException ex) {
-            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
-        }
-        finally {
-            return result;
-        }
-    }
-
-    public boolean verifyAffectedFeaturesCnt(String lblCount) {
-        boolean result = false;
-        try {
-            waitPageReady();
-            if (lblAffectedFeaturesCnt.getText().contains(lblCount)) {
-                result = true;
-            }
-        }
-        catch (NoSuchElementException ex) {
-            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
-        }
-        finally {
-            return result;
-        }
-    }
 
     public boolean verifyRequirement(String requirem) {
         boolean result = false;
@@ -110,11 +65,5 @@ public class HomePage extends TemplatePage {
         List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
         result = Cols.get(3).getText().equalsIgnoreCase(value);
         return result;
-    }
-
-    public boolean verifyLogoutLink() {
-        boolean result = false;
-       //waitPageReady();
-        return lnkLogout.getText().equalsIgnoreCase("logout");
     }
 }
