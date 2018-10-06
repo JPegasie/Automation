@@ -18,8 +18,9 @@ public class ResultsGridPage extends TemplatePage {
         WebElement lblPageTitle;
     @FindBy(how = How.XPATH, using = "//a[@href='/ws/user/logout']")
     WebElement lnkLogout;
-    @FindBy(how = How.XPATH, using = "//span[@data-bind='text : affectedRequirements']")
-        WebElement lblAffectedFeaturesCnt;
+
+    @FindBy(how = How.XPATH, using = "//div[@title='Summary']//table[@class='table table-hover optimizedScope']")
+    WebElement summaryTable;
 
     public boolean verifyContentTitle (String title) {
         System.out.println(lblPageTitle.getTagName());
@@ -42,20 +43,31 @@ public class ResultsGridPage extends TemplatePage {
         }
     }
 
-    public boolean verifyAffectedFeaturesCnt(String lblCount) {
+    public boolean verifyOptScopeTextExecTargeted(String value) {
         boolean result = false;
-        try {
-            waitPageReady();
-            if (lblAffectedFeaturesCnt.getText().contains(lblCount)) {
-                result = true;
-            }
-        }
-        catch (NoSuchElementException ex) {
-            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
-        }
-        finally {
-            return result;
-        }
+        System.out.println(summaryTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
+        result = Cols.get(1).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifyOptScopeTextExecAdditional(String value) {
+        boolean result = false;
+        System.out.println(summaryTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
+        result = Cols.get(2).getText().equalsIgnoreCase(value);
+        return result;
+    }
+
+    public boolean verifyOptScopeTextExecTotal(String value) {
+        boolean result = false;
+        System.out.println(summaryTable.getAttribute("class"));
+        List<WebElement> Rows = HTMLTableUtil.getRowsFromTableBody(summaryTable);
+        List<WebElement> Cols = HTMLTableUtil.getCellsFromRows(Rows,2);
+        result = Cols.get(3).getText().equalsIgnoreCase(value);
+        return result;
     }
 
     public boolean verifyLogoutLink() {
