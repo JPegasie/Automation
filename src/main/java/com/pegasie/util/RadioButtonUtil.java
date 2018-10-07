@@ -13,8 +13,8 @@ public class RadioButtonUtil {
         if (text.length() != 0) {
             for (WebElement toggle : toggleButtons) {
                 if (toggle.getAttribute("value").equalsIgnoreCase(text)) {
-                    WebElement e = toggle.findElement(By.xpath("following-sibling::label"));
-                    e.click();
+                    WebElement lbl = toggle.findElement(By.xpath("following-sibling::label"));
+                    lbl.click();
                     result = true;
                     break;
                 }
