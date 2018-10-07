@@ -20,11 +20,13 @@ public class ResultsGridPage extends TemplatePage {
         WebElement lblPageTitle;
     @FindBy(how = How.XPATH, using = "//a[@href='/ws/user/logout']")
         WebElement lnkLogout;
-
     @FindBy(how = How.CLASS_NAME, using = "styled-select")
         WebElement drpDwnRelease;
     @FindBy(how = How.XPATH, using = "//input[@type='radio'][@name='view']")
-        List<WebElement> rdoBtnView;
+    List<WebElement> rdoBtnView;
+    @FindBy(how = How.CSS, using = ".btn.btn-info.btn-sm.refresh")
+        WebElement btnRefresh;
+
 
     @FindBy(how = How.XPATH, using = "//div[@title='Summary']//table[@class='table table-hover optimizedScope']")
         WebElement tblSummaryOptimized;
@@ -74,6 +76,21 @@ public class ResultsGridPage extends TemplatePage {
             waitPageReady();
             System.out.println("Size of View: " + rdoBtnView.size());
             result = RadioButtonUtil.selectByValue(rdoBtnView, value);
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+        }
+        finally {
+            return result;
+        }
+    }
+
+    public boolean clickRefresh() {
+        boolean result = false;
+        try {
+            waitPageReady();
+            btnRefresh.click();
+            result = true;
         }
         catch (NoSuchElementException ex) {
             System.out.println("<<" +ex.getLocalizedMessage() + ">>");
