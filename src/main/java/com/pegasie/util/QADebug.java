@@ -48,15 +48,15 @@ public class QADebug {
         browserType = browserType.trim().toLowerCase();
         switch (browserType) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "C:/Temp/drivers/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "C:/AUTOMATION/Web/drivers/chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "C:/Temp/drivers/geckodriver.exe");
+                System.setProperty("webdriver.gecko.driver", "C:/AUTOMATION/Web/drivers/geckodriver.exe");
                 driver = new FirefoxDriver();
                 break;
             case "ie":
-                System.setProperty("webdriver.ie.driver", "C:/Temp/drivers/IEDriverServer_32.exe");
+                System.setProperty("webdriver.ie.driver", "C:/AUTOMATION/Web/drivers/IEDriverServer_32.exe");
                 driver = new InternetExplorerDriver();
                 break;
         }

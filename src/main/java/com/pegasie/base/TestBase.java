@@ -50,7 +50,7 @@ public class TestBase {
     @FindBy(how = How.XPATH, using = "//body")
     WebElement containerHeader;
 
-    private static Logger logger = LogManager.getLogger();
+    public static Logger logger = LogManager.getLogger();
     public static WebDriver driver;
     private boolean isRemoteTest = Boolean.parseBoolean(System.getProperty("IsRemoteTest"));
     private String driverPath = System.getProperty("DriverPath");

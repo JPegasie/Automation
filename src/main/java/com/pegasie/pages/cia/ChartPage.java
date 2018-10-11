@@ -2,6 +2,7 @@ package com.pegasie.pages.cia;
 
 import com.pegasie.pages.TemplatePage;
 import com.pegasie.util.HTMLTableUtil;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
