@@ -383,6 +383,7 @@ public class ResultsGridPage extends TemplatePage {
         }
         catch (NoSuchElementException ex) {
             System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+            logger.error(ex.getMessage());
         }
         finally {
             return result;

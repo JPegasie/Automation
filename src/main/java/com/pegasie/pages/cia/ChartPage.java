@@ -58,4 +58,37 @@ public class ChartPage extends TemplatePage {
     }
 
 
+
+
+
+
+    public boolean verifyRequirementNotContains(String requirem) {
+        String sFunc="verifyRequirementNotContains";
+        boolean result = true;
+        try {
+            waitPageReady();
+            System.out.println(lblWheel.getAttribute("id") + " ATTRIBUTE");
+            System.out.println(lblWheel.findElements(By.tagName("text")).size() + " SIZE of text");
+            List<WebElement> reqs = lblWheel.findElements(By.tagName("text"));
+            for (WebElement req : reqs) {
+                //System.out.println(req.getText());
+                if (req.getText().contains(requirem)) {
+                    logger.info("search requirement is:"+requirem);
+                    logger.info("Actual requirement is:"+req.getText());
+                    logger.warn("Function name is:"+sFunc+"--Failed");
+                    result = false;
+                    break;
+                }
+            }
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+            logger.error(ex.getMessage());
+        }
+        finally {
+            return result;
+        }
+    }
+
+
 }
