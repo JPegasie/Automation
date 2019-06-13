@@ -32,6 +32,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -44,6 +45,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+
 
 public class TestBase {
 
@@ -60,13 +62,23 @@ public class TestBase {
     private String DownLoadFolder = System.getProperty("DownloadFolder");
     private File downloadFolder = new File(DownLoadFolder);
 
+
     public boolean waitPageReady() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        System.out.println("<body class=" + containerHeader.getAttribute("class"));
-        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(containerHeader,"class", "loading")));
-        System.out.println("<body class=" + containerHeader.getAttribute("class"));
-        return containerHeader.getAttribute("class").equals("");
+        try{
+            WebDriverWait wait = new WebDriverWait(driver, 20);
+//            System.out.println("<body class=" + containerHeader.getAttribute("class"));
+            wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(containerHeader,"class", "loading")));
+//            System.out.println("<body class=" + containerHeader.getAttribute("class"));
+            Thread.sleep(300);
+            return containerHeader.getAttribute("class").equals("");
+        }
+        catch (Exception ex){
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+            return false;
+        }
     }
+
+
 
     public void saisirType(String browserType) {
         if (driver != null) {
@@ -261,6 +273,7 @@ public class TestBase {
                 if (bouton.getText().contains(boutonText)) {
                     targetElement = bouton;
                     isElementFound = true;
+                    waitPageReady();
                     break;
                 }
             }

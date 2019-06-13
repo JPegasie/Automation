@@ -60,8 +60,6 @@ public class CIALoginPage extends TemplatePage {
     public void enterPassword(String password) {
         txtPassword.clear();
         txtPassword.sendKeys(password);
-
-
     }
 
 

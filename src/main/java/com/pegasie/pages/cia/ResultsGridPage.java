@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+//import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class ResultsGridPage extends TemplatePage {
 
