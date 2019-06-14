@@ -32,6 +32,10 @@ public class ChartPage extends TemplatePage {
     WebElement labSelectLevel4;
     @FindBy(how = How.ID, using = "affectedRequirementslabel")
     WebElement lblAffectedFeaturesCnt2;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"scopeSummary\"]/div[1]/div/label[1]")
+    WebElement butDEFUALT;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"scopeSummary\"]/div[1]/div/label[2]")
+    WebElement butSTD;
 
 
 
@@ -182,6 +186,37 @@ public class ChartPage extends TemplatePage {
             return result;
         }
     }
+
+    public boolean selectDEFAULT() {
+        boolean result = false;
+        try {
+//            waitPageReady();
+            butDEFUALT.click();
+            waitPageReady();
+            result = true;
+        } catch (Exception ex) {
+            System.out.println("<<" + ex.getLocalizedMessage() + ">>");
+            result = false;
+        } finally {
+            return result;
+        }
+    }
+
+    public boolean selectSTD() {
+        boolean result = false;
+        try {
+//            waitPageReady();
+            butSTD.click();
+            waitPageReady();
+            result = true;
+        } catch (Exception ex) {
+            System.out.println("<<" + ex.getLocalizedMessage() + ">>");
+            result = false;
+        } finally {
+            return result;
+        }
+    }
+
     public boolean selectLevel4() {
         boolean result = false;
         try {
