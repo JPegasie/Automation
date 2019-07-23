@@ -15,13 +15,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-//import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class ResultsGridPage extends TemplatePage {
 
     @FindBy(how = How.XPATH, using = "//h1[@class='heading']")
         WebElement lblPageTitle;
-    @FindBy(how = How.XPATH, using = "//a[@href='/ws/user/logout']")
+    @FindBy(how = How.XPATH, using = "/html/body/div[1]/header/div[3]/div/a[2]/span")
             WebElement lnkLogout;
     @FindBy(how = How.XPATH, using = "//*[@id=\'header\']/div[3]/div/a[2]/span")
         WebElement lnkLogoutOri;
@@ -66,6 +66,16 @@ public class ResultsGridPage extends TemplatePage {
     @FindBy(how = How.XPATH, using ="//*[@id=\'header\']/div[4]")
     WebElement lblLoginName;
 
+    //Joseph 2019-07-17
+    @FindBy(how = How.XPATH, using ="//*[@id=\'wheelChartBreadCrumb\']/div/span[11]/a")
+    WebElement bcFunctions;
+
+    @FindBy(how = How.XPATH, using ="//*[@id=\'exTab\']/ul/li[1]/a/h5")
+    WebElement tabRequirements;
+
+    @FindBy(how = How.XPATH, using ="//*[@id=\'exTab\']/ul/li[2]/a/h5")
+    WebElement tabDefects;
+
 
     public boolean verifyContentTitle (String title) {
         System.out.println(lblPageTitle.getTagName());
@@ -78,6 +88,7 @@ public class ResultsGridPage extends TemplatePage {
         try {
             waitPageReady();
             lnkLogout.click();
+            waitPageReady();
             result = true;
         }
         catch (NoSuchElementException ex) {
@@ -376,6 +387,10 @@ public class ResultsGridPage extends TemplatePage {
                     wait.until(ExpectedConditions.elementToBeClickable(bcFeature));
                     bcFeature.click();
                     break;
+                case "FUNCTIONS":
+                    wait.until(ExpectedConditions.elementToBeClickable(bcFunctions));
+                    bcFunctions.click();
+                    break;
 
             }
 
@@ -384,6 +399,37 @@ public class ResultsGridPage extends TemplatePage {
         catch (NoSuchElementException ex) {
             System.out.println("<<" +ex.getLocalizedMessage() + ">>");
             logger.error(ex.getMessage());
+        }
+        finally {
+            return result;
+        }
+    }
+
+    //Joseph 2019_07_17
+    public boolean clickDefects() {
+        boolean result = false;
+        try {
+            waitPageReady();
+            tabDefects.click();
+            result = true;
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
+        }
+        finally {
+            return result;
+        }
+    }
+
+    public boolean clickReuirements() {
+        boolean result = false;
+        try {
+            waitPageReady();
+            tabRequirements.click();
+            result = true;
+        }
+        catch (NoSuchElementException ex) {
+            System.out.println("<<" +ex.getLocalizedMessage() + ">>");
         }
         finally {
             return result;
